@@ -6,6 +6,22 @@ spring:
     name: cloud-gateway
   config:
     import: configserver:http://localhost:9296
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: order-service
+            uri: lb://order-service
+            predicates:
+              - Path=/order/**
+          - id: product-service
+            uri: lb://product-service
+            predicates:
+              - Path=/product/**
+          - id: payment-service
+            uri: lb://payment-service
+            predicates:
+              - Path=/payment/**
 
 management:
   tracing:

@@ -1,0 +1,13 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: cloud-gateway
+  config:
+    import: configserver:http://localhost:9296
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
